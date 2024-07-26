@@ -5,13 +5,13 @@
 ```
 -----------------------------------------------------------------------------------
 Excepted Files:
- - get_next_line.c  - get_next_line.h
+                get_next_line.c            get_next_line.h
 
-Allowed Functions
-read, free and malloc
+Allowed Functions:
+        read, free, malloc
 -----------------------------------------------------------------------------------
 Prototype
-char	  *get_next_line(int fd);
+         char	  *get_next_line(int fd);
 
 The Program
 LINE
