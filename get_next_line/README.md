@@ -3,17 +3,15 @@
 ***
 
 ```
------------------------------------------------------------------------------------
-Excepted Files:
-                get_next_line.c            get_next_line.h
+Assignment name : get_next_line
+Expected files : get_next_line.c, get_next_line.h 
+Allowed functions: read, free, malloc
+--------------------------------------------------------------------------------
 
-Allowed Functions:
-        read, free, malloc
------------------------------------------------------------------------------------
-Prototype
-         char	  *get_next_line(int fd);
+Write a function named get_next_line which prototype should be:
 
-The Program
+	char	*get_next_line(int fd);
+
 LINE
 
 Your function must return a line that has been read from the file descriptor passed as parameter.
