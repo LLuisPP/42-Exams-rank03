@@ -6,7 +6,7 @@
 /*   By: lprieto- <lprieto-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 15:59:09 by lprieto-          #+#    #+#             */
-/*   Updated: 2024/07/27 16:07:20 by lprieto-         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:54:55 by lprieto-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,29 @@ void	put_digit(long long int nbr, int base, int *len)
 	write(1, &hex[nbr % base], 1);
 }
 
-int	ft_printf(const char *format, ... )
+int	ft_printf(const char *fmt, ... )
 {
-	int length = 0;
+	int len = 0;
 
-	va_list	pointer;
-	va_start(pointer, format);
+	va_list	ptr;
+	va_start(ptr, fmt);
 
-	while (*format)
+	while (*fmt)
 	{
-		if ((*format == '%') && ((*(format + 1) == 's') || (*(format + 1) == 'd') || (*(format + 1) == 'x')))
+		if ((*fmt == '%') && ((*(fmt + 1) == 's') || (*(fmt + 1) == 'd') || (*(fmt + 1) == 'x')))
 		{
-			format++;
-			if (*format == 's')
-				put_str(va_arg(pointer, char *), &length);
-			else if (*format == 'd')
-				put_digit((long long int)va_arg(pointer, int), 10, &length);
-			else if (*format == 'x')
-				put_digit((long long int)va_arg(pointer, unsigned int), 16, &length);
+			fmt++;
+			if (*fmt == 's')
+				put_str(va_arg(ptr, char *), &len);
+			else if (*fmt == 'd')
+				put_digit((long long int)va_arg(ptr, int), 10, &len);
+			else if (*fmt == 'x')
+				put_digit((long long int)va_arg(ptr, unsigned int), 16, &len);
 		}
 		else
-			length += write(1, format, 1);
-		format++;
+			len += write(1, fmt, 1);
+		fmt++;
 	}
-	return (va_end(pointer), length);
+	return (va_end(ptr), len);
 }
+
