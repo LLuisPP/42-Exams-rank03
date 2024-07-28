@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lprieto- <lprieto-@student.42barcel>       +#+  +:+       +#+        */
+/*   By: lprieto- <lprieto-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 13:15:54 by lprieto-          #+#    #+#             */
-/*   Updated: 2024/07/26 16:21:38 by lprieto-         ###   ########.fr       */
+/*   Updated: 2024/07/28 18:38:39 by lprieto-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,49 @@
 
 char	*ft_strchr(char *s, int c)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (*s == (char)c)
+		if (s[i] == (char)c)
 			return ((char *)s);
-		s++;
+		i++;
 	}
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char const *str)
 {
-	size_t	i = 0;
-	
-	while (s[i])
+	size_t	i;
+
+	i = 0;
+	while (str[i])
 		i++;
 	return (i);
 }
 
-void	ft_strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *d, char const *s)
 {
-	while (*src)	
-		*dst++ = *src++;
-	*dst = '\0';
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		d[i] = s[i];
+		i++;
+	}
+	d[i] = '\0';
+	return (d);
 }
 
-char	*ft_strdup(const char *src)
+char	*ft_strdup(char *src)
 {
-	size_t	len = ft_strlen(src) + 1;
-	char	*dst = malloc(len);
-	
+	size_t	len;
+	char	*dst;
+
+	len = ft_strlen(src) + 1;
+	dst = malloc(len);
 	if (dst == NULL)
 		return (NULL);
 	ft_strcpy(dst, src);
@@ -52,16 +65,19 @@ char	*ft_strdup(const char *src)
 
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	size_t	s1_len = ft_strlen(s1);
-	size_t	s2_len = ft_strlen(s2);
-	char	*join = malloc((s1_len + s2_len + 1));
+	size_t	len1;
+	size_t	len2;
+	char	*join;
 
 	if (!s1 || !s2)
 		return (NULL);
+	len2 = ft_strlen(s2);
+	len1 = ft_strlen(s1);
+	join = malloc((len1 + len2 + 1));
 	if (!join)
 		return (NULL);
 	ft_strcpy(join, s1);
-	ft_strcpy((join + s1_len), s2);
+	ft_strcpy((join + len1), s2);
 	free(s1);
 	return (join);
 }
@@ -71,13 +87,13 @@ char	*get_next_line(int fd)
 	static char	buf[BUFFER_SIZE + 1];
 	char		*line;
 	char		*newline;
-	int			countread;
-	int			to_copy;
+	int		count;
+	int		to_copy;
 
 	line = ft_strdup(buf);
-	while (!(newline = ft_strchr(line, '\n')) && (countread = read(fd, buf, BUFFER_SIZE)))
+	while (!(newline = ft_strchr(line, '\n')) && (count = read(fd, buf, BUFFER_SIZE)))
 	{
-		buf[countread] = '\0';
+		buf[count] = '\0';
 		line = ft_strjoin(line, buf);
 	}
 	if (ft_strlen(line) == 0)
