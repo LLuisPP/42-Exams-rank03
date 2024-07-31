@@ -6,14 +6,14 @@
 /*   By: lprieto- <lprieto-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:39:06 by lprieto-          #+#    #+#             */
-/*   Updated: 2024/07/31 18:39:15 by lprieto-         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:49:15 by lprieto-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdlib.h>
+/*#include <stdlib.h>
 #include <stdio.h>
-#include <fcntl.h>
+#include <fcntl.h>*/
 
 char	*ft_strchr(char *str, int c)
 {
@@ -102,7 +102,7 @@ char *get_next_line(int fd)
 		free(line);
 		return (NULL);
 	}
-	if (!(newline != NULL))
+	if (newline != NULL)
 	{
 		tocopy = newline - line + 1;
 		ft_strcpy(buf, newline + 1);
@@ -116,6 +116,7 @@ char *get_next_line(int fd)
 	return (line);
 }
 
+/*
 int	main(void)
 {
 	int	fd;
@@ -129,4 +130,4 @@ int	main(void)
 	}
 	close(fd);
 	return 0;
-}
+}*/
