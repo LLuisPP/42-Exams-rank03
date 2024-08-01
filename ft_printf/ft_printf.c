@@ -1,68 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   mine.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lprieto- <lprieto-@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 13:13:04 by lprieto-          #+#    #+#             */
-/*   Updated: 2024/07/26 16:20:54 by lprieto-         ###   ########.fr       */
+/*   Created: 2024/07/27 15:59:09 by lprieto-          #+#    #+#             */
+/*   Updated: 2024/08/01 11:46:34 by lprieto-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
 
-void	put_string(char *string, int *length)
-{
-	if (!string)
-		string = "(null)";
-	while (*string)
-		*length += write(1, string++, 1);
-}
+// #include <stdio.h>
 
-void	put_digit(long long int number, int base, int *length)
+void	ft_putstr(char *str, int *len)
 {
-	char	*hexadecimal = "0123456789abcdef";
-
-	if (number < 0)
+	if (!str)
+		str = "(null)";
+	while (*str)
 	{
-		number *= -1;
-		*length += write(1, "-", 1);
+		write(1, str, 1);
+		*len += 1;
+		str++;
 	}
-	if (number >= base)
-		put_digit((number / base), base, length);
-	*length += write(1, &hexadecimal[number % base], 1);
 }
 
-int	ft_printf(const char *format, ... )
+void	ft_putdigit(long long int nbr, int base, int *len)
 {
-	int length = 0;
+	char	*hex = "0123456789abcdef";
 
-	va_list	pointer;
-	va_start(pointer, format);
-
-	while (*format)
+	if (nbr < 0)
 	{
-		if ((*format == '%') && ((*(format + 1) == 's') || (*(format + 1) == 'd') || (*(format + 1) == 'x')))
+		nbr = -nbr;
+		*len += 1;
+		write(1, "-", 1);
+	}
+	if (nbr >= base)
+		ft_putdigit((nbr / base), base, len);
+	*len += 1;
+	write(1, &hex[nbr % base], 1);
+}
+
+int ft_printf(const char *fmt, ... )
+{
+	int	len;
+
+	len = 0;
+	va_list ptr;
+	va_start(ptr, fmt);
+	while (*fmt)
+	{
+		if(*fmt == '%' && (*(fmt + 1) == 's' || *(fmt + 1) == 'd' || *(fmt + 1) == 'x'))
 		{
-			format++;
-			if (*format == 's')
-				put_string(va_arg(pointer, char *), &length);
-			else if (*format == 'd')
-				put_digit((long long int)va_arg(pointer, int), 10, &length);
-			else if (*format == 'x')
-				put_digit((long long int)va_arg(pointer, unsigned int), 16, &length);
+			fmt++;
+			if (*fmt == 's')
+				ft_putstr(va_arg(ptr, char *), &len);
+			else if (*fmt == 'd')
+				ft_putdigit((long long int)va_arg(ptr, int), 10, &len);
+			else if (*fmt == 'x')
+				ft_putdigit((long long int)va_arg(ptr, unsigned int), 16, &len);
 		}
 		else
-			length += write(1, format, 1);
-		format++;
+		{
+			len += 1;
+			write(1, fmt, 1);
+		}
+		fmt++;
 	}
-	return (va_end(pointer), length);
+	return (va_end(ptr),len);
 }
 
-int	main(void)
+/*int	main(void)
 {
-	ft_printf("%s", "hola que tal");
+	ft_printf("MINE > Esto es un: %s, esto es un: %d y esto es un: %x\n", "STRING", -1024, 255);
+	printf("MINE > Esto es un: %s, esto es un: %d y esto es un: %xi\n", "STRING", -1024, 255);
+
 	return (0);
-}
+}*/
