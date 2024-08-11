@@ -39,3 +39,30 @@ No call to another function will be done on the file descriptor between 2 calls 
 FILE
 Finally we consider that get_next_line has an undefined behaviour when reading from a binary file.
 ```
+
+
+
+
+<div align="center">
+
+  <div style="display: inline-block; vertical-align: top; width: 45%;">
+    <pre>
+
+```
+------------------------------------------------------
+Random option:
+            get_next_line       printf
+
+------------------------------------------------------
+```
+    </pre>
+  </div>
+  
+  <div style="display: inline-block; vertical-align: top; width: 45%;">
+    <p align="center">
+      <a href="https://github.com/LLuisPP/42-Exams-rank03/tree/main/get_next_line">get_next_line</a> &nbsp;&nbsp;&nbsp;
+      <a href="https://github.com/LLuisPP/42-Exams-rank03/tree/main/ft_printf">printf</a>
+    </p>
+  </div>
+
+</div>
