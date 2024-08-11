@@ -41,28 +41,7 @@ Finally we consider that get_next_line has an undefined behaviour when reading f
 ```
 
 
-
-
 <div align="center">
-
-  <div style="display: inline-block; vertical-align: top; width: 45%;">
-    <pre>
-
-```
-------------------------------------------------------
-Random option:
-            get_next_line       printf
-
-------------------------------------------------------
-```
-    </pre>
-  </div>
   
-  <div style="display: inline-block; vertical-align: top; width: 45%;">
-    <p align="center">
-      <a href="https://github.com/LLuisPP/42-Exams-rank03/tree/main/get_next_line">get_next_line</a> &nbsp;&nbsp;&nbsp;
-      <a href="https://github.com/LLuisPP/42-Exams-rank03/tree/main/ft_printf">printf</a>
-    </p>
-  </div>
-
+  [`get_next_line`](https://github.com/LLuisPP/42-Exams-rank03/tree/main/get_next_line) [`ft_printf`](https://github.com/LLuisPP/42-Exams-rank03/tree/main/ft_printf)
 </div>
