@@ -1,8 +1,3 @@
-<div align="center">
-
-  <div style="display: inline-block; vertical-align: top; width: 45%;">
-    <pre>
-
 ```
 ------------------------------------------------------
 Random option:
@@ -10,14 +5,9 @@ Random option:
 
 ------------------------------------------------------
 ```
-    </pre>
-  </div>
-  
-  <div style="display: inline-block; vertical-align: top; width: 45%;">
-    <p align="center">
-      <a href="https://github.com/LLuisPP/42-Exams-rank03/tree/main/get_next_line">get_next_line</a> &nbsp;&nbsp;&nbsp;
-      <a href="https://github.com/LLuisPP/42-Exams-rank03/tree/main/ft_printf">printf</a>
-    </p>
-  </div>
 
+
+<div align="center">
+  
+  [`get_next_line`](https://github.com/LLuisPP/42-Exams-rank03/tree/main/get_next_line) [`ft_printf`](https://github.com/LLuisPP/42-Exams-rank03/tree/main/ft_printf)
 </div>
